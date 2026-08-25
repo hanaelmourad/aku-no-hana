@@ -344,7 +344,7 @@ img,video{max-width:100%}
 <nav class="menu"><a href="index.html#return" >HOME</a><a href="word.html" >WORD</a><a href="sound.html" >SOUND</a><a href="image.html" >IMAGE</a><a href="about.html" >ABOUT</a><small>HOME / WORD / SOUND / IMAGE / ABOUT</small></nav>
 
 <main>
-<section class="page-video-hero"><video autoplay muted loop playsinline preload="auto">
+<section class="page-video-hero"><video autoplay muted loop playsinline preload="auto" webkit-playsinline="">
       <source src="assets/media/b3c49e15b017ff.mp4" type="video/mp4">
     </video><span class="video-credit">Aku no Hana · AI-assisted moving image</span><div class="page-video-shade"></div><div class="eyebrow video-eyebrow">03 / IMAGE</div><div class="page-video-title">IMAGE</div><div class="page-video-copy"><p>Image is where the human and the machine begin to lose their clean edges. Moving image, found footage, generated material and digital manipulation become ways of testing what changes when an image passes through a machine.</p></div></section>
 
@@ -411,6 +411,107 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       const target = routes[el.dataset.page];
       if (target) window.location.href = target;
     });
+  });
+})();
+</script>
+
+
+<script>
+(() => {
+  const isIOS =
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+  const videos = [...document.querySelectorAll('video')];
+  if (!videos.length) return;
+
+  const makeInlineMuted = video => {
+    if (!video.hasAttribute('controls')) {
+      video.muted = true;
+      video.defaultMuted = true;
+    }
+    video.playsInline = true;
+    video.setAttribute('playsinline','');
+    video.setAttribute('webkit-playsinline','');
+  };
+
+  const hydrateLazy = video => {
+    if (video.dataset.loaded === '1') return;
+    let changed = false;
+    video.querySelectorAll('source[data-src]').forEach(source => {
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+      changed = true;
+    });
+    if (changed) {
+      video.dataset.loaded = '1';
+      video.load();
+    }
+  };
+
+  const safePlay = video => {
+    if (video.id === 'soundLandingVideo') return; // audio gate stays user-controlled
+    makeInlineMuted(video);
+    hydrateLazy(video);
+    const attempt = () => {
+      const p = video.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => {});
+      }
+    };
+    if (video.readyState >= 2) {
+      attempt();
+    } else {
+      video.addEventListener('canplay', attempt, {once:true});
+      video.addEventListener('loadeddata', attempt, {once:true});
+    }
+  };
+
+  videos.forEach(makeInlineMuted);
+
+  // iOS Safari is more reliable when sources are present before the video
+  // enters the viewport. Hydrate lazy sources early, but keep preload light.
+  if (isIOS) {
+    videos.forEach(video => {
+      if (video.dataset.lazyVideo === '1') hydrateLazy(video);
+    });
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.dataset.inView = '1';
+        safePlay(video);
+      } else {
+        video.dataset.inView = '0';
+        if (!isIOS && video.id !== 'soundLandingVideo' && !video.paused) {
+          video.pause();
+        }
+      }
+    });
+  }, {rootMargin:'100% 0px 100% 0px', threshold:.01});
+
+  videos.forEach(video => {
+    if (video.id !== 'soundLandingVideo') observer.observe(video);
+  });
+
+  // Safari sometimes rejects autoplay until the page receives its first
+  // interaction. A normal touch/scroll then silently unlocks visible videos.
+  const unlock = () => {
+    videos.forEach(video => {
+      if (video.id !== 'soundLandingVideo' && video.dataset.inView === '1') {
+        safePlay(video);
+      }
+    });
+  };
+
+  ['touchstart','pointerdown','scroll'].forEach(type => {
+    window.addEventListener(type, unlock, {passive:true, once:type!=='scroll'});
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) unlock();
   });
 })();
 </script>
