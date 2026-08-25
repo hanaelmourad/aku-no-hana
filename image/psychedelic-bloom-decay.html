@@ -1,0 +1,195 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
+*{box-sizing:border-box}html,body{margin:0;background:#030303;color:#d7d0c4}body{font-family:Arial,sans-serif}
+.back{position:fixed;z-index:4;top:28px;left:32px;border:0;background:none;color:#aaa;font-size:10px;letter-spacing:.18em;cursor:pointer}
+main{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:10vh 5vw 4vh}video{max-width:90vw;max-height:78vh;object-fit:contain}
+.meta{max-width:1180px;margin:auto;padding:0 5vw 8vh;display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+h1{font:400 clamp(25px,3vw,48px) Georgia,serif;margin:0}.meta span{font-size:8px;letter-spacing:.2em;color:#777;text-transform:uppercase}
+
+/* v16 full navigation */
+.visual-mast{
+  position:fixed;z-index:90;left:0;top:0;width:100%;
+  padding:28px clamp(24px,4.2vw,78px);
+  display:flex;justify-content:space-between;align-items:center;
+  color:#ded7ca;mix-blend-mode:difference;letter-spacing:.18em;pointer-events:none
+}
+.visual-mast>*{pointer-events:auto}
+.visual-brand{font-size:10px;letter-spacing:.24em;color:inherit;text-decoration:none}
+.visual-brand span{margin-left:10px;opacity:.55;font-size:9px}
+.visual-actions{display:flex;gap:28px;align-items:center}
+.visual-index{border:0;background:none;color:inherit;font-size:10px;letter-spacing:.22em;cursor:pointer}
+.visual-index span{font-size:17px;margin-left:12px}
+.visual-menu{
+  position:fixed;inset:0;z-index:80;background:rgba(3,3,3,.985);
+  display:grid;align-content:center;justify-items:end;
+  padding:12vh clamp(24px,4.2vw,78px);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .5s ease,visibility 0s linear .5s
+}
+.visual-menu.open{opacity:1;visibility:visible;pointer-events:auto;transition-delay:0s}
+.visual-menu a{font:400 clamp(38px,7vw,108px)/.98 Georgia,serif;letter-spacing:-.04em;color:rgba(215,208,196,.78);text-decoration:none}
+.visual-menu small{margin-top:7vh;font-size:8px;letter-spacing:.18em;color:#68645e}
+.visual-back{font-size:9px;letter-spacing:.18em;color:inherit;text-decoration:none;opacity:.58}
+@media(max-width:700px){.visual-mast{padding:22px}.visual-back{display:none}.visual-menu{padding:12vh 22px}.visual-menu a{font-size:15vw}}
+
+
+/* v19 moving-image credit */
+main{position:relative}
+.video-credit{
+  position:absolute;z-index:8;right:5vw;bottom:5vh;
+  font-family:Arial,Helvetica,sans-serif;font-size:7px;line-height:1.35;
+  letter-spacing:.16em;color:rgba(222,215,202,.34);
+  text-shadow:0 1px 12px rgba(0,0,0,.72);pointer-events:none;white-space:nowrap
+}
+@media(max-width:700px){.video-credit{right:22px;bottom:4vh;font-size:6.5px}}
+
+
+/* v20 work description */
+.meta{align-items:flex-start}
+.meta-copy{max-width:760px}
+.meta-copy h1{margin:0}
+.work-description{
+  margin:18px 0 0;
+  max-width:700px;
+  font:400 clamp(12px,1.05vw,15px)/1.7 Georgia,"Times New Roman",serif;
+  color:rgba(215,208,196,.48)
+}
+@media(max-width:700px){
+  .meta{display:block;padding-bottom:10vh}
+  .meta>span{display:block;margin-top:18px}
+  .work-description{font-size:12px;line-height:1.65;margin-top:14px}
+}
+
+
+/* production v3 — sitewide mobile hardening */
+html,body{max-width:100%;overflow-x:hidden}
+img,video{max-width:100%}
+@media(max-width:760px){
+  .mast{
+    padding:18px 20px!important;
+  }
+  .index,.index-btn{
+    min-width:44px;
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-end;
+  }
+  .menu{
+    padding:11vh 20px!important;
+    justify-items:start!important;
+    overflow-y:auto;
+  }
+  .menu a{
+    font-size:clamp(42px,14vw,78px)!important;
+    line-height:1.02!important;
+  }
+  .menu small{
+    margin-top:28px!important;
+  }
+  .video-credit{
+    max-width:70vw;
+    white-space:normal!important;
+    text-align:right;
+  }
+}
+
+
+/* production v4 — visual work INDEX */
+body.visual-menu-open{overflow:hidden}
+.visual-index{
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+.visual-menu a{
+  display:block;
+  padding:.08em 0;
+}
+@media(max-width:760px){
+  .visual-mast{
+    padding:18px 20px!important;
+  }
+  .visual-actions{gap:10px}
+  .visual-menu{
+    padding:11vh 20px!important;
+    justify-items:end!important;
+    text-align:right!important;
+    overflow-y:auto;
+  }
+  .visual-menu a{
+    font-size:clamp(42px,14vw,76px)!important;
+    line-height:1.02!important;
+  }
+}
+
+</style><meta name="generator" content="Aku no Hana static release v24">
+</head><body>
+<header class="visual-mast">
+  <a class="visual-brand" href="../index.html#return" >AKU NO HANA <span lang="ja">悪の華</span></a>
+  <div class="visual-actions">
+    <a class="visual-back" href="../image.html" >← IMAGE</a>
+    <button class="visual-index" aria-expanded="false">INDEX <span>＋</span></button>
+  </div>
+</header>
+<nav class="visual-menu">
+  <a href="../index.html#return" >HOME</a>
+  <a href="../word.html" >WORD</a>
+  <a href="../sound.html" >SOUND</a>
+  <a href="../image.html" >IMAGE</a>
+  <a href="../about.html" >ABOUT</a>
+  <small>HOME / WORD / SOUND / IMAGE / ABOUT</small>
+</nav>
+<main><video autoplay muted loop playsinline controls><source src="../assets/media/04bddf43fd97df.mp4" type="video/mp4"></video><span class="video-credit">Aku no Hana · AI-assisted moving image</span></main>
+<div class="meta"><div class="meta-copy"><h1>Psychedelic Bloom / Decay</h1><p class="work-description">This work, AI-generated, depicts the cycle of life and decay as prompted by the user, and perceived and interpreted by the machine.</p></div><span>moving image</span></div>
+
+
+
+
+<script>
+(() => {
+  const routes = {"home":"../index.html","home-return":"../index.html#return","word":"../word.html","word-return":"../word.html#return","word-selected":"../word.html#selected-writing","sound":"../sound.html","image":"../image.html","about":"../about.html","cellular-corruption":"../writing/cellular-corruption.html","dumb-human":"../writing/dumb-human.html","weather-report":"../writing/weather-report.html","where-are-all-my-things":"../writing/where-are-all-my-things.html","bloom-decay":"psychedelic-bloom-decay.html"};
+  document.querySelectorAll('[data-page]').forEach(el => {
+    if (el.tagName === 'A') return;
+    el.addEventListener('click', () => {
+      const target = routes[el.dataset.page];
+      if (target) window.location.href = target;
+    });
+  });
+})();
+</script>
+
+
+<script>
+(() => {
+  const btn = document.querySelector('.visual-index');
+  const menu = document.querySelector('.visual-menu');
+
+  if (!btn || !menu) return;
+
+  const closeMenu = () => {
+    menu.classList.remove('open');
+    document.body.classList.remove('visual-menu-open');
+    btn.setAttribute('aria-expanded','false');
+    const mark = btn.querySelector('span');
+    if (mark) mark.textContent = '＋';
+  };
+
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    document.body.classList.toggle('visual-menu-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    const mark = btn.querySelector('span');
+    if (mark) mark.textContent = open ? '×' : '＋';
+  });
+
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+  });
+})();
+</script>
+
+</body></html>

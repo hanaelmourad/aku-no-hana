@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IMAGE — AKU NO HANA</title><style>
+:root{
+  --ink:#030303;--paper:#d8d0c4;--dim:rgba(216,208,196,.46);
+  --faint:rgba(216,208,196,.13);--pad:clamp(24px,4.2vw,78px);
+  --serif:Georgia,"Times New Roman",serif;--sans:Arial,Helvetica,sans-serif
+}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--serif);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+body:after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.015;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")
+}
+.mast{
+  position:fixed;z-index:90;left:0;top:0;width:100%;padding:28px var(--pad);
+  display:flex;justify-content:space-between;align-items:center;color:#ded7ca;
+  mix-blend-mode:difference;letter-spacing:.18em
+}
+.brand{font-size:17px}.brand span{margin-left:12px;color:#89847c;font-size:12px;letter-spacing:.16em}
+.index-btn{border:0;background:transparent;color:inherit;cursor:pointer;font-family:var(--sans);font-size:10px;letter-spacing:.24em}
+.index-btn span{font-size:19px;margin-left:20px}
+.menu{
+  position:fixed;inset:0;z-index:80;background:rgba(3,3,3,.985);
+  display:grid;align-content:center;justify-items:end;padding:12vh var(--pad);
+  opacity:0;pointer-events:none;transition:opacity .55s ease
+}
+.menu.open{opacity:1;pointer-events:auto}
+.menu a{font-size:clamp(46px,7vw,118px);line-height:.9;letter-spacing:-.045em}
+.menu small{margin-top:34px;font-family:var(--sans);font-size:8px;letter-spacing:.24em;color:#5f5a54}
+.page-hero{
+  min-height:100svh;padding:18vh var(--pad) 11vh;
+  display:flex;flex-direction:column;justify-content:flex-end
+}
+.eyebrow{
+  margin-bottom:auto;font-family:var(--sans);font-size:8px;letter-spacing:.30em;
+  text-transform:uppercase;color:rgba(216,208,196,.28)
+}
+.page-hero h1{
+  margin:0;font-weight:400;font-size:clamp(64px,10vw,165px);
+  line-height:.8;letter-spacing:-.05em;color:rgba(216,208,196,.74)
+}
+.page-hero p{
+  margin:6vh 0 0;width:min(700px,80vw);
+  font-size:clamp(17px,1.45vw,22px);line-height:1.72;color:var(--dim)
+}
+.section{
+  min-height:85vh;padding:16vh var(--pad);
+  display:grid;grid-template-columns:.55fr 1.45fr;gap:8vw;
+  align-items:start;border-top:1px solid rgba(216,208,196,.06)
+}
+.label{
+  font-family:var(--sans);font-size:8px;letter-spacing:.30em;
+  text-transform:uppercase;color:rgba(216,208,196,.28)
+}
+.copy{max-width:800px;font-size:clamp(20px,2vw,31px);line-height:1.45;color:rgba(216,208,196,.66)}
+.copy p{margin:0 0 1.2em}.copy p:last-child{margin-bottom:0}
+.quiet-index{padding:10vh 0 0;margin-top:6vh;border-top:1px solid rgba(216,208,196,.08)}
+.quiet-row{
+  padding:18px 0;border-bottom:1px solid rgba(216,208,196,.08);
+  display:flex;justify-content:space-between;gap:20px
+}
+.quiet-row span:first-child{font-size:clamp(18px,1.6vw,25px)}
+.quiet-row span:last-child{font-family:var(--sans);font-size:7px;letter-spacing:.22em;text-transform:uppercase;color:rgba(216,208,196,.25)}
+.footer{
+  min-height:34vh;padding:8vh var(--pad) 4vh;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  font-family:var(--sans);font-size:8px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(216,208,196,.28)
+}
+.footer nav{display:flex;gap:22px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1.3s ease,transform 1.6s ease}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:760px){
+  .mast{padding:22px var(--pad)}.brand{font-size:14px}.brand span{display:none}.menu a{font-size:16vw}
+  .page-hero{padding:16vh var(--pad) 9vh}.page-hero p{width:88vw;font-size:16px}
+  .section{min-height:auto;padding:13vh var(--pad);grid-template-columns:1fr;gap:6vh}
+  .copy{font-size:20px}.footer{display:block;padding-top:12vh}.footer nav{margin-top:24px;flex-wrap:wrap}
+}
+.page-video-hero{height:100svh;position:relative;overflow:hidden;background:#030303}.page-video-hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.72;filter:brightness(.68) contrast(1.05) saturate(.74)}.page-video-shade{position:absolute;z-index:1;inset:0;background:linear-gradient(to bottom,rgba(3,3,3,.12),transparent 48%,rgba(3,3,3,.52)),radial-gradient(ellipse at center,transparent 25%,rgba(3,3,3,.20) 72%,rgba(3,3,3,.58))}.video-eyebrow{position:absolute;z-index:3;left:var(--pad);top:18vh}.page-video-title{position:absolute;z-index:3;left:var(--pad);bottom:12vh;font:400 clamp(52px,8vw,130px) var(--serif);line-height:.82;letter-spacing:-.05em;color:rgba(216,208,196,.72)}.page-video-copy{position:absolute;z-index:3;right:var(--pad);bottom:12vh;width:min(455px,36vw)}.page-video-copy p{margin:0;font-size:clamp(13px,1.05vw,16px);line-height:1.68;color:rgba(222,215,202,.52)}@media(max-width:760px){.video-eyebrow{left:22px;top:15vh}.page-video-title{left:22px;bottom:19vh;font-size:16vw}.page-video-copy{left:22px;right:22px;bottom:6vh;width:auto}.page-video-copy p{font-size:12px;line-height:1.58}}
+
+/* IMAGE v2 */
+.page-video-hero video{
+  object-fit:cover!important;
+  object-position:center!important;
+  opacity:.82!important;
+  filter:brightness(.60) contrast(1.06) saturate(.76)!important;
+}
+.image-machine-scene{
+  min-height:130vh;
+  position:relative;
+  overflow:hidden;
+  background:#030303;
+}
+.image-machine-media{
+  position:sticky;
+  top:0;
+  height:100svh;
+  overflow:hidden;
+  background:#030303;
+}
+.image-machine-media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  opacity:.76;
+  filter:brightness(.58) contrast(1.07) saturate(.78);
+}
+.image-machine-veil{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to bottom,rgba(3,3,3,.18),transparent 35%,rgba(3,3,3,.40)),
+    radial-gradient(ellipse at center,transparent 28%,rgba(3,3,3,.16) 68%,rgba(3,3,3,.50));
+}
+.image-machine-label{
+  position:absolute;
+  z-index:3;
+  top:18vh;
+  left:var(--pad);
+  font-family:var(--sans);
+  font-size:8px;
+  letter-spacing:.30em;
+  color:rgba(216,208,196,.36);
+}
+.image-machine-copy{
+  position:absolute;
+  z-index:3;
+  right:var(--pad);
+  bottom:13vh;
+  width:min(560px,42vw);
+  font-size:clamp(17px,1.45vw,22px);
+  line-height:1.65;
+  color:rgba(222,215,202,.60);
+}
+.image-machine-copy p{margin:0 0 1.2em}
+@media(max-width:760px){
+  .image-machine-scene{min-height:112vh}
+  .image-machine-label{left:22px;top:15vh}
+  .image-machine-copy{
+    left:22px;right:22px;bottom:7vh;width:auto;
+    font-size:14px;line-height:1.58;
+  }
+}
+
+
+/* IMAGE v3: single landing film + selected visual work */
+.image-machine-scene,.image-machine-media,.image-machine-label,.image-machine-copy{
+  all:unset;
+}
+.selected-visuals .copy{
+  max-width:900px;
+}
+.visual-work-feature{
+  margin:0 0 10vh;
+}
+.visual-work-feature video{
+  width:100%;
+  max-height:72vh;
+  object-fit:cover;
+  display:block;
+  opacity:.78;
+  filter:brightness(.58) contrast(1.06) saturate(.78);
+}
+.visual-work-caption{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:16px;
+  align-items:baseline;
+}
+.visual-work-caption span{
+  font:8px var(--sans);
+  letter-spacing:.18em;
+  color:rgba(216,208,196,.28);
+}
+.visual-work-caption strong{
+  font:400 clamp(20px,2vw,30px) var(--serif);
+  color:rgba(216,208,196,.68);
+}
+.visual-work-caption em{
+  font:8px var(--sans);
+  font-style:normal;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(216,208,196,.28);
+}
+@media(max-width:760px){
+  .visual-work-feature{margin-bottom:8vh}
+  .visual-work-feature video{max-height:58vh}
+  .visual-work-caption{
+    grid-template-columns:28px 1fr;
+  }
+  .visual-work-caption em{
+    grid-column:2;
+  }
+}
+
+ 
+.visual-entry-list{border-top:1px solid rgba(201,194,183,.13);margin-bottom:8vh}
+.visual-entry-list button{appearance:none;border:0;border-bottom:1px solid rgba(201,194,183,.13);background:none;color:inherit;width:100%;padding:30px 0;display:grid;grid-template-columns:48px 1fr auto;gap:18px;text-align:left;align-items:baseline;cursor:pointer}
+.visual-entry-list span,.visual-entry-list em{font:8px var(--sans);letter-spacing:.17em;color:rgba(201,194,183,.3)}
+.visual-entry-list em{font-style:normal;text-transform:uppercase}.visual-entry-list strong{font:400 clamp(22px,2.5vw,38px) var(--serif);color:rgba(215,208,196,.72)}
+@media(max-width:700px){.visual-entry-list button{grid-template-columns:30px 1fr}.visual-entry-list em{grid-column:2}}
+
+/* IMAGE v12 unified selected works */
+.visual-entry-list.unified{
+  border-top:1px solid rgba(201,194,183,.13);
+  margin-bottom:0;
+}
+.visual-entry-list.unified button,
+.visual-entry-list.unified .visual-static-row{
+  width:100%;
+  padding:24px 0;
+  display:grid;
+  grid-template-columns:46px 1fr minmax(130px,220px);
+  gap:18px;
+  align-items:baseline;
+  border:0;
+  border-bottom:1px solid rgba(201,194,183,.13);
+  background:none;
+  color:inherit;
+  text-align:left;
+}
+.visual-entry-list.unified button{appearance:none;cursor:pointer}
+.visual-entry-list.unified span{
+  font:8px var(--sans);
+  letter-spacing:.16em;
+  color:rgba(201,194,183,.28);
+}
+.visual-entry-list.unified strong{
+  font:400 clamp(16px,1.35vw,21px) var(--serif);
+  letter-spacing:.01em;
+  color:rgba(215,208,196,.64);
+}
+.visual-entry-list.unified em{
+  font:8px var(--sans);
+  font-style:normal;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(201,194,183,.28);
+}
+.visual-entry-list.unified button:hover strong{
+  color:rgba(230,224,214,.94);
+}
+@media(max-width:700px){
+  .visual-entry-list.unified button,
+  .visual-entry-list.unified .visual-static-row{
+    grid-template-columns:28px 1fr;
+    gap:10px;
+  }
+  .visual-entry-list.unified em{grid-column:2}
+  .visual-entry-list.unified strong{font-size:16px}
+}
+
+
+/* v19 — restrained moving-image credits */
+.video-credit{
+  position:absolute;
+  z-index:9;
+  right:var(--pad,clamp(24px,4.2vw,78px));
+  bottom:3.2vh;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:7px;
+  line-height:1.35;
+  font-weight:400;
+  letter-spacing:.16em;
+  color:rgba(222,215,202,.34);
+  text-shadow:0 1px 12px rgba(0,0,0,.72);
+  pointer-events:none;
+  white-space:nowrap
+}
+@media(max-width:760px){
+  .video-credit{
+    right:22px;
+    bottom:2.2vh;
+    font-size:6.5px;
+    letter-spacing:.13em
+  }
+}
+
+
+/* production v3 — sitewide mobile hardening */
+html,body{max-width:100%;overflow-x:hidden}
+img,video{max-width:100%}
+@media(max-width:760px){
+  .mast{
+    padding:18px 20px!important;
+  }
+  .index,.index-btn{
+    min-width:44px;
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:flex-end;
+  }
+  .menu{
+    padding:11vh 20px!important;
+    justify-items:end!important;
+    overflow-y:auto;
+    text-align:right;
+  }
+  .menu a{
+    font-size:clamp(42px,14vw,78px)!important;
+    line-height:1.02!important;
+  }
+  .menu small{
+    margin-top:28px!important;
+  }
+  .video-credit{
+    max-width:70vw;
+    white-space:normal!important;
+    text-align:right;
+  }
+}
+
+
+/* production v4 — consistent INDEX alignment */
+@media(max-width:760px){
+  .menu{
+    justify-items:end!important;
+    text-align:right!important;
+  }
+}
+
+
+/* production v4 — INDEX tap target */
+@media(max-width:760px){
+  .index,.index-btn{
+    min-width:44px!important;
+    min-height:44px!important;
+  }
+}
+
+</style><meta name="generator" content="Aku no Hana static release v24">
+</head>
+<body>
+<header class="mast"><a class="brand" href="index.html#return" >AKU NO HANA <span lang="ja">悪の華</span></a><button class="index-btn" aria-expanded="false">INDEX <span>＋</span></button></header>
+<nav class="menu"><a href="index.html#return" >HOME</a><a href="word.html" >WORD</a><a href="sound.html" >SOUND</a><a href="image.html" >IMAGE</a><a href="about.html" >ABOUT</a><small>HOME / WORD / SOUND / IMAGE / ABOUT</small></nav>
+
+<main>
+<section class="page-video-hero"><video autoplay muted loop playsinline preload="auto">
+      <source src="assets/media/b3c49e15b017ff.mp4" type="video/mp4">
+    </video><span class="video-credit">Aku no Hana · AI-assisted moving image</span><div class="page-video-shade"></div><div class="eyebrow video-eyebrow">03 / IMAGE</div><div class="page-video-title">IMAGE</div><div class="page-video-copy"><p>Image is where the human and the machine begin to lose their clean edges. Moving image, found footage, generated material and digital manipulation become ways of testing what changes when an image passes through a machine.</p></div></section>
+
+
+<section class="section reveal">
+  <div class="label">HUMAN / MACHINE</div>
+  <div class="copy">
+    <p>I am interested in authorship as something unstable. An image can begin in a human imagination, pass through a generative system and return looking both familiar and foreign.</p>
+    <p>The work follows that uncertainty: who made the image, where intention sits, and whether knowing that a machine participated changes what we feel when we encounter it.</p>
+  </div>
+</section>
+
+
+<section class="section reveal selected-visuals">
+  <div class="label">SELECTED VISUAL WORKS</div>
+  <div class="copy">
+    <div class="visual-entry-list unified">
+      <button data-page="bloom-decay">
+        <span>01</span>
+        <strong>PSYCHEDELIC BLOOM / DECAY</strong>
+        <em>moving image</em>
+      </button>
+      <div class="visual-static-row">
+        <span>02</span>
+        <strong>BODY / MACHINE STUDIES</strong>
+        <em>IN VITRO</em>
+      </div>
+      <div class="visual-static-row">
+        <span>03</span>
+        <strong>ANTHROPOCENE / SCALE EXPERIMENTS</strong>
+        <em>IN VITRO</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer"><span>AKU NO HANA / 2026</span><nav><a href="index.html#return" >HOME</a><a href="word.html" >WORD</a><a href="sound.html" >SOUND</a><a href="image.html" >IMAGE</a><a href="about.html" >ABOUT</a></nav></footer>
+<script>
+const menuBtn=document.querySelector('.index-btn'),menu=document.querySelector('.menu');
+if(menuBtn&&menu){
+  menuBtn.addEventListener('click',()=>{
+    const open=menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',String(open));
+    menuBtn.querySelector('span').textContent=open?'×':'＋';
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.querySelector('span').textContent='＋';
+  }));
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+
+<script>
+(() => {
+  const routes = {"home":"index.html","home-return":"index.html#return","word":"word.html","word-return":"word.html#return","word-selected":"word.html#selected-writing","sound":"sound.html","image":"image.html","about":"about.html","cellular-corruption":"writing/cellular-corruption.html","dumb-human":"writing/dumb-human.html","weather-report":"writing/weather-report.html","where-are-all-my-things":"writing/where-are-all-my-things.html","bloom-decay":"image/psychedelic-bloom-decay.html"};
+  document.querySelectorAll('[data-page]').forEach(el => {
+    if (el.tagName === 'A') return;
+    el.addEventListener('click', () => {
+      const target = routes[el.dataset.page];
+      if (target) window.location.href = target;
+    });
+  });
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,226 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dumb Human — AKU NO HANA</title><style>
+:root{--black:#030303;--ivory:#c9c2b7;--muted:#8f897f;--pad:clamp(24px,4.2vw,78px);--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}html{background:var(--black);scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--ivory);font-family:var(--serif)}
+nav{position:fixed;z-index:20;top:0;left:0;width:100%;padding:28px var(--pad);display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(3,3,3,.86),transparent)}
+.brand{font:10px var(--sans);letter-spacing:.24em}.back{font:9px var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.58;cursor:pointer}
+article{width:min(760px,calc(100% - 48px));margin:0 auto;padding:22vh 0 20vh}
+.kicker{font:9px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:7vh}
+h1{font-weight:400;font-size:clamp(42px,7vw,92px);line-height:.92;letter-spacing:-.045em;margin:0 0 13vh;color:rgba(215,208,196,.88)}
+.prose{font-size:clamp(18px,1.65vw,24px);line-height:1.72;color:rgba(215,208,196,.78)}
+.prose p{margin:0 0 1.65em}.prose p.short{margin-top:2.4em;margin-bottom:2.4em}
+.end{height:30vh;display:flex;align-items:center;justify-content:center;font:9px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:rgba(201,194,183,.28)}
+@media(max-width:700px){nav{padding:22px}.brand{font-size:9px}article{padding-top:18vh}h1{margin-bottom:9vh}.prose{font-size:18px;line-height:1.68}}
+
+/* v16 selected-writing navigation */
+.reader-mast{
+  position:fixed;z-index:90;left:0;top:0;width:100%;
+  padding:28px var(--pad);display:flex;justify-content:space-between;
+  align-items:center;color:#ded7ca;mix-blend-mode:difference;
+  letter-spacing:.18em;pointer-events:none
+}
+.reader-mast > *{pointer-events:auto}
+.reader-brand{
+  font:10px var(--sans);letter-spacing:.24em;cursor:pointer;color:inherit;text-decoration:none
+}
+.reader-brand span{margin-left:10px;opacity:.55;font-size:9px}
+.reader-actions{display:flex;align-items:center;gap:28px}
+.reader-index{
+  border:0;background:transparent;color:inherit;cursor:pointer;
+  font:10px var(--sans);letter-spacing:.22em;padding:0
+}
+.reader-index span{font-size:17px;margin-left:12px}
+.reader-menu{
+  position:fixed!important;inset:0!important;z-index:80!important;
+  width:100%!important;height:100%!important;
+  padding:12vh var(--pad)!important;
+  display:grid!important;align-content:center!important;justify-items:end!important;
+  background:rgba(3,3,3,.985)!important;
+  opacity:0;visibility:hidden;pointer-events:none!important;
+  transition:opacity .5s ease,visibility 0s linear .5s
+}
+.reader-menu.open{
+  opacity:1;visibility:visible;pointer-events:auto!important;transition-delay:0s
+}
+.reader-menu a{
+  font:400 clamp(38px,7vw,108px)/.98 var(--serif);
+  letter-spacing:-.04em;color:rgba(215,208,196,.78);
+  text-decoration:none
+}
+.reader-menu a:hover{color:rgba(235,229,218,.98)}
+.reader-menu small{
+  margin-top:7vh;font:8px var(--sans);letter-spacing:.18em;
+  color:rgba(201,194,183,.27)
+}
+.reader-back{
+  color:inherit;text-decoration:none;
+  font:9px var(--sans);letter-spacing:.18em;text-transform:uppercase;opacity:.58
+}
+@media(max-width:700px){
+  .reader-mast{padding:22px}
+  .reader-actions{gap:14px}
+  .reader-back{display:none}
+  .reader-menu{padding:12vh 22px!important}
+  .reader-menu a{font-size:15vw}
+  .reader-brand{font-size:9px}
+}
+
+
+/* production v3 — selected writing nav/mobile */
+body.reader-menu-open{overflow:hidden}
+.reader-index{
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+}
+.reader-menu a{
+  display:block;
+  padding:.08em 0;
+}
+@media(max-width:700px){
+  .reader-mast{
+    padding:18px 20px;
+    align-items:center;
+  }
+  .reader-actions{gap:10px}
+  .reader-index{
+    min-width:44px;
+    min-height:44px;
+  }
+  .reader-menu{
+    padding:11vh 20px!important;
+    justify-items:end!important;
+  }
+  .reader-menu a{
+    font-size:clamp(42px,14vw,76px)!important;
+    line-height:1.02;
+  }
+  article{
+    width:min(100% - 40px,760px)!important;
+    padding-top:17vh!important;
+    padding-bottom:14vh!important;
+  }
+  h1{
+    font-size:clamp(38px,12vw,62px)!important;
+    line-height:.96!important;
+    margin-bottom:9vh!important;
+    overflow-wrap:anywhere;
+  }
+  article > p{
+    font-size:16px;
+    line-height:1.7;
+  }
+}
+
+
+/* production v4 — selected-writing INDEX alignment */
+@media(max-width:700px){
+  .reader-menu{
+    justify-items:end!important;
+    text-align:right!important;
+  }
+}
+
+</style><meta name="generator" content="Aku no Hana static release v24">
+</head>
+<body>
+<header class="reader-mast">
+  <a class="reader-brand" href="../index.html#return" >AKU NO HANA <span lang="ja">悪の華</span></a>
+  <div class="reader-actions">
+    <a class="reader-back" href="../word.html#selected-writing" >← WORD</a>
+    <button class="reader-index" aria-expanded="false">INDEX <span>＋</span></button>
+  </div>
+</header>
+<nav class="reader-menu">
+  <a href="../index.html#return" >HOME</a>
+  <a href="../word.html" >WORD</a>
+  <a href="../sound.html" >SOUND</a>
+  <a href="../image.html" >IMAGE</a>
+  <a href="../about.html" >ABOUT</a>
+  <small>HOME / WORD / SOUND / IMAGE / ABOUT</small>
+</nav>
+
+<article><div class="kicker">FRAGMENT / 2026</div><h1>Dumb Human</h1>
+<p>I automated everything.</p>
+<p>Not because I’m a cool millennial<br>but because my muscles are too tired<br>to do repetitive tasks.</p>
+<p>Give me motors and engines.<br>Give me microchips.</p>
+<p>The toothbrush spins on its own.<br>The face brush whirrs in circles.<br>Smart plugs,<br>smartphones,<br>smart lights,<br>smart home—</p>
+<p>dumb human.</p>
+<p>Machines remember<br>so I don’t have to.</p>
+<p>They wake me up.<br>Count my steps.<br>Tell me when to stand,<br>when to breathe,<br>when to sleep.</p>
+<p>The hum of the electronics is relentless.</p>
+<p>A low-grade tinnitus that never heals.</p>
+<p>Sometimes it’s subtle.</p>
+<p>Other times it bursts into roars,<br>drilling through my ears<br>and my thoughts.</p>
+<p>Part human,<br>part machine.</p>
+<p>Already a cyborg.</p>
+<p>The phone is part of me.</p>
+<p>A limb.</p>
+<p>Not the worst of limbs.</p>
+<p>It tugs at my neck<br>every time I look up.</p>
+<p>My shoulders curve around it.</p>
+<p>My spine remembers its shape.</p>
+<p>It sleeps next to me.</p>
+<p>Sometimes under my pillow.</p>
+<p>5G<br>nestled into my dreams.</p>
+<p>I wake up<br>and reach for it<br>before I reach for myself.</p>
+<p>I automated everything.</p>
+</article>
+<div class="end">AKU NO HANA · 2026</div>
+
+
+
+
+<script>
+(() => {
+  const routes = {"home":"../index.html","home-return":"../index.html#return","word":"../word.html","word-return":"../word.html#return","word-selected":"../word.html#selected-writing","sound":"../sound.html","image":"../image.html","about":"../about.html","cellular-corruption":"cellular-corruption.html","dumb-human":"dumb-human.html","weather-report":"weather-report.html","where-are-all-my-things":"where-are-all-my-things.html","bloom-decay":"../image/psychedelic-bloom-decay.html"};
+  document.querySelectorAll('[data-page]').forEach(el => {
+    if (el.tagName === 'A') return;
+    el.addEventListener('click', () => {
+      const target = routes[el.dataset.page];
+      if (target) window.location.href = target;
+    });
+  });
+})();
+</script>
+
+
+<script>
+(() => {
+  const btn = document.querySelector('.reader-index');
+  const menu = document.querySelector('.reader-menu');
+
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+      const mark = btn.querySelector('span');
+      if (mark) mark.textContent = open ? '×' : '＋';
+      document.body.classList.toggle('reader-menu-open', open);
+    });
+
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        document.body.classList.remove('reader-menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+        const mark = btn.querySelector('span');
+        if (mark) mark.textContent = '＋';
+      });
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        menu.classList.remove('open');
+        document.body.classList.remove('reader-menu-open');
+        btn.setAttribute('aria-expanded', 'false');
+        const mark = btn.querySelector('span');
+        if (mark) mark.textContent = '＋';
+      }
+    });
+  }
+})();
+</script>
+
+</body></html>
